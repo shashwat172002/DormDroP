@@ -16,15 +16,11 @@ export default function Header() {
         Drop
       </Link>
 
-    
-
-      
-
       <div className="flex gap-2 md:order-2">
         <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
           <FaMoon />
         </Button>
-        <Link to="/signin">
+        <Link to="/signup">
           <Button gradientDuoTone="purpleToBlue">Sign Up/In</Button>
         </Link>
         <Navbar.Toggle />
@@ -32,13 +28,19 @@ export default function Header() {
 
       <Navbar.Collapse>
         <Navbar.Link active={path === "/"} as={"div"}>
-          <Link to="/" className="text-lg">Home</Link>
+          <Link to="/" className="text-lg">
+            Home
+          </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/about"} as={"div"}>
-          <Link to="/about" className="text-lg">About</Link>
+          <Link to="/about" className="text-lg">
+            About
+          </Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/contactus"} as={"div"}>
-          <Link to="/contactus" className="text-lg">Contact Us</Link>
+          <Link to="/contactus" className="text-lg">
+            Contact Us
+          </Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
