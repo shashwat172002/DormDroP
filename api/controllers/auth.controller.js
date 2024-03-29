@@ -33,7 +33,6 @@ export const signup = async (req, res, next) => {
   }
 };
 
-
 export const signin = async (req, res, next) => {
   const { username, password } = req.body;
 
@@ -60,6 +59,17 @@ export const signin = async (req, res, next) => {
         httpOnly: true,
       })
       .json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const signout = (req, res, next) => {
+  try {
+    res
+      .clearCookie('access_token')
+      .status(200)
+      .json('User has been signed out');
   } catch (error) {
     next(error);
   }
