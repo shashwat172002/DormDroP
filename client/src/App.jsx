@@ -11,6 +11,7 @@ import Sender from "./pages/Sender";
 import Receiver from "./pages/Receiver";
 import ReceiverPost from "./pages/ReceiverPost";
 import SenderPost from "./pages/SenderPost";
+import Stopwatch from "./pages/Stopwatch";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/receiver" element={<Receiver />} />
         <Route path="/receiverpost" element={<ReceiverPost/>} />
         <Route path="/senderpost" element={<SenderPost/>} />
+        <Route path="/stopwatch" element={<Stopwatch/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
