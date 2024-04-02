@@ -8,6 +8,12 @@ function Home() {
   const handleclick = () => {
     navigate("/signin");
   };
+  const handlesender = () => {
+    navigate("/receiverpost");
+  };
+  const handlereceiver = () => {
+    navigate("/senderpost");
+  };
 
   return (
     <>
@@ -25,6 +31,7 @@ function Home() {
                 <button
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
                   id="sender"
+                  onClick={handlesender}
                 >
                   Go to Sender
                 </button>
@@ -35,7 +42,7 @@ function Home() {
                 </label>
                 <button
                   className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
-                  id="receiver"
+                  id="receiver" onClick={handlereceiver}
                 >
                   Go to Receiver
                 </button>
@@ -68,7 +75,7 @@ function Home() {
                 >
                   Go to Sender
                 </button>
-              </div>  
+              </div>
               <div className="flex flex-col space-y-2">
                 <label htmlFor="receiver" className="text-lg font-medium">
                   Receiver

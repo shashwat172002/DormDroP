@@ -1,12 +1,14 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaMoon } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+
 import { signout } from "../redux/user/userSlice";
 export default function Header() {
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSignout = async () => {
     try {
       const res = await fetch("/api/auth/signout", {
@@ -17,6 +19,7 @@ export default function Header() {
         console.log(data.message);
       } else {
         dispatch(signout());
+        navigate("/");
       }
     } catch (error) {
       console.log(error.message);

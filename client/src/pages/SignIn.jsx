@@ -10,7 +10,8 @@ import {
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error: errorMessage } = useSelector((state) => state.user);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -19,10 +20,11 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username || !formData.password) {
-      return dispatch(signInFailure('Please fill all the fields'));
+      return setErrorMessage('Please fill out all fields.');
     }
     try {
-      dispatch(signInStart());
+      setLoading(true);
+      setErrorMessage(null);
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,14 +32,17 @@ export default function SignIn() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFailure(data.message));
+        setLoading(false);
+        return setErrorMessage(data.message);
       }
+      setLoading(false);
       if (res.ok) {
         dispatch(signInSuccess(data));
         navigate('/');
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      setErrorMessage(error.message);
+      setLoading(false);
     }
   };
   return (
@@ -47,12 +52,12 @@ export default function SignIn() {
         <div className='flex-1'>
           <Link to='/' className='font-bold dark:text-white text-4xl'>
             <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>
-              Dorm
+              Sahand's
             </span>
-            Drop
+            Blog
           </Link>
           <p className='text-sm mt-5'>
-            You can sign in with your email and password
+            This is a demo project. You can sign in with your email and password
             or with Google.
           </p>
         </div>
@@ -61,10 +66,10 @@ export default function SignIn() {
         <div className='flex-1'>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
             <div>
-              <Label value='Your Registration Number' />
+              <Label value='Your Registration number' />
               <TextInput
-                type='text'
-                placeholder='Enter your 9 digit Registration Number'
+                type='username'
+                placeholder='Enter your 9 digits regitration number'
                 id='username'
                 onChange={handleChange}
               />
@@ -73,7 +78,7 @@ export default function SignIn() {
               <Label value='Your password' />
               <TextInput
                 type='password'
-                placeholder='**********'
+                placeholder='************'
                 id='password'
                 onChange={handleChange}
               />
