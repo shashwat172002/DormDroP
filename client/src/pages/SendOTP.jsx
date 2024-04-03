@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const OtpVerify = () => {
+const SendOTP = () => {
   // const navigate = useNavigate();
   const { currentReceiver } = useSelector((state) => state.RECEIVER);
   const navigate=useNavigate();
@@ -27,4 +27,4 @@ const OtpVerify = () => {
   );
 };
 
-export default OtpVerify;
+export default SendOTP;

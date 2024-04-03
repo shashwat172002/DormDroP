@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.route.js';
 import senderRoutes from './routes/sender.route.js';
 import receiverRoutes from './routes/receiver.route.js';
+import otpRoutes from './routes/otp.route.js';
 dotenv.config();
 
 mongoose
@@ -27,6 +28,7 @@ app.listen(3000, () => {
 app.use('/api/auth', authRoutes);
 app.use('/api/sender', senderRoutes);
 app.use('/api/receiver', receiverRoutes);
+app.use('/api/otp', otpRoutes );
 
 
 app.use((err, req, res, next) => {
