@@ -32,7 +32,7 @@ const SenderPost = () => {
           <p className="text-gray-600">
             Time Availability: {sender.availabilityTime}
           </p>
-          <Link to="/receiver">
+          <Link to="/stopwatch">
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg mt-4 transition duration-300 ease-in-out">
               Confirm to Proceed
             </button>

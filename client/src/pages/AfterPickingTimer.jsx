@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const Stopwatch = () => {
+const AfterPickingTimer = () => {
   const navigate = useNavigate();
   const { currentReceiver } = useSelector((state) => state.RECEIVER);
+  var time=0.5;
  
   const [countdown, setCountdown] = useState();
 
@@ -12,7 +13,7 @@ const Stopwatch = () => {
     const storedCountdown = localStorage.getItem('countdown');
     const endTime = localStorage.getItem('endTime');
 
-    if (currentReceiver.waitTime && storedCountdown && endTime) {
+    if (time && storedCountdown && endTime) {
       const now = new Date().getTime();
       const remainingTime = endTime - now;
       if (remainingTime > 0) {
@@ -21,12 +22,12 @@ const Stopwatch = () => {
         localStorage.removeItem('countdown');
         localStorage.removeItem('endTime');
       }
-    } else if (currentReceiver.waitTime) {
-      const endTime = new Date().getTime() + currentReceiver.waitTime * 60 * 1000; // Convert waitTime to milliseconds
+    } else if (time) {
+      const endTime = new Date().getTime() + time * 60 * 1000; // Convert waitTime to milliseconds
       localStorage.setItem('endTime', endTime);
-      setCountdown(currentReceiver.waitTime * 60); // Convert waitTime to seconds
+      setCountdown(time * 60); // Convert waitTime to seconds
     }
-  }, [currentReceiver.waitTime]);
+  }, [time]);
 
   useEffect(() => {
     if (countdown > 0) {
@@ -43,7 +44,7 @@ const Stopwatch = () => {
       localStorage.removeItem('countdown');
       localStorage.removeItem('endTime');
      
-      navigate('/otpverify');
+      // navigate('/sendercountdown');
     }
   }, [countdown]);
 
@@ -60,7 +61,7 @@ const Stopwatch = () => {
        <div className="flex justify-center items-center h-screen">
        <div className="flex flex-col items-center justify-center mr-8">
          <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ1b2RtOTZvZndpaWExYTBqem5mamZvd2w5OGN5eGRnczVqMWllYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0Wu1DFv1E4iD2gtuq/giphy.gif" alt="Hourglass Icon" className="w-40 h-40 mr-8 my-16" />
-         <h1 className="text-4xl font-bold">Time in which delivery guy will arrive outside of Gate-2</h1>
+         <h1 className="text-4xl font-bold">Time in which delivery should complete</h1>
          <div className="text-6xl font-bold">{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
        </div>
        <div className="max-w-xl bg-white shadow-md rounded-lg overflow-hidden">
@@ -98,4 +99,4 @@ const Stopwatch = () => {
     )
   };
 
-export default Stopwatch;
+export default AfterPickingTimer;
