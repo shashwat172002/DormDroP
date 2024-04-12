@@ -1,19 +1,22 @@
 import { Alert, Spinner } from 'flowbite-react';
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { theSender } from '../redux/sender/senderSlice';
 
 const Sender = () => {
-    
+    const dispatch=useDispatch();
+
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
    const [loading, setLoading] = useState(false);
-  const navigate=useNavigate();
+   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
      if (!formData.registrationNumber || !formData.mobileNumber || !formData.availabilityTime || !formData.name) {
@@ -35,6 +38,7 @@ const Sender = () => {
       
       setLoading(false);
       if(res.ok) {
+        dispatch(theSender(data));
         navigate('/receiverpost');
         //send this to reciver's post lists
          

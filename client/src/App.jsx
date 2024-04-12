@@ -4,16 +4,22 @@ import About from "./pages/About";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import SignUp from "./pages/SignUp";
-import ContactUs from "./pages/ContactUs";
+import ContactUs from "./pages/ContactUs"
 import Header from "./components/Header";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 import Sender from "./pages/Sender";
 import Receiver from "./pages/Receiver";
 import ReceiverPost from "./pages/ReceiverPost";
 import SenderPost from "./pages/SenderPost";
-import AfterPickingTimer from "./pages/AfterPickingTimer";
 import Stopwatch from "./pages/Stopwatch";
+import AfterPickingTimer from "./pages/AfterPickingTimer";
 import SendOTP from "./pages/SendOTP";
+import { ToastContainer } from "react-toastify";
+import SuccessfullyDelivered from "./pages/SuccessfullyDelivered";
+import SenderEnd1 from "./pages/SenderEnd1";
+import ReceiverEnd1 from "./pages/ReceiverEnd1";
+
+
 
 export default function App() {
   return (
@@ -27,16 +33,19 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/sender" element={<Sender />} />
-        <Route path="/receiver" element={<Receiver />} />
+        <Route path="/receiver" element={<Receiver/>} />
         <Route path="/receiverpost" element={<ReceiverPost/>} />
         <Route path="/senderpost" element={<SenderPost/>} />
         <Route path="/stopwatch" element={<Stopwatch/>} />
         <Route path="/afterpickingtimer" element={<AfterPickingTimer/>}/>
         <Route path="/sendotp" element={<SendOTP/>} />
-
+        <Route path="/successfullydelivered" element={<SuccessfullyDelivered/>} />
+        <Route path="/senderend1" element={<SenderEnd1/>} />
+        <Route path="/receiverend1" element={<ReceiverEnd1/>} />
+        
       </Routes>
-      <Footer />
+      <ToastContainer/>
+      <Footer/>
     </BrowserRouter>
   );
 }
-

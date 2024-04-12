@@ -1,14 +1,17 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaMoon } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { theDashboard } from "../redux/dashboard/dashboardSlice";
 
 import { signout } from "../redux/user/userSlice";
+
 export default function Header() {
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleSignout = async () => {
     try {
       const res = await fetch("/api/auth/signout", {
@@ -25,6 +28,32 @@ export default function Header() {
       console.log(error.message);
     }
   };
+  var a;
+  const handleDashboard = async () => {
+    try {
+      const res = await fetch(`/api/dashboard/userdashboard/${currentUser.username}`);
+      const data = await res.json();
+      
+      if (data.success === false) {
+        console.log("error from bakck");
+      }
+
+      if (res.ok) {
+        console.log("success");
+        console.log(data);
+        dispatch(theDashboard(data));
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      // if(a==null)
+      // {
+      //   console.log(a);
+      // }
+      
+      console.log("error from catch");
+    }
+  };
+
   return (
     <Navbar className="border-b-2">
       <Link
@@ -53,9 +82,9 @@ export default function Header() {
                 {currentUser.email}
               </span>
             </Dropdown.Header>
-            <Link to={"/dashboard?tab=profile"}>
-              <Dropdown.Item>Profile</Dropdown.Item>
-            </Link>
+
+            <Dropdown.Item onClick={handleDashboard}>Dashboard</Dropdown.Item>
+
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
           </Dropdown>

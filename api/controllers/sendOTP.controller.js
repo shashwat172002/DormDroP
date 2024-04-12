@@ -3,7 +3,6 @@ import OTP from '../models/otp.model.js';
 import { errorHandler } from '../utils/error.js';
 import dotenv from 'dotenv';
 
-
 dotenv.config();
 // Initialize nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -25,8 +24,8 @@ export const sendotp = async (req, res, next) => {
 
 
   if(!email ||email==='')
-  next(errorHandler(400, 'email is required'));
-
+  next(errorHandler(606, 'email is required'));
+  
   const otp = generateOTP();
 
   const otpDocument = new OTP({
@@ -38,7 +37,7 @@ export const sendotp = async (req, res, next) => {
 
   // Email message options
   const mailOptions = {
-    from: process.env.EMAIL,
+    from:  process.env.EMAIL,
     to: email,
     subject: 'Your OTP',
     text: `Your OTP is ${otp}`,
@@ -50,7 +49,7 @@ export const sendotp = async (req, res, next) => {
       console.error(error);
       res.status(500).send({ success: false, error: 'Failed to send OTP' });
     } else {
-      otpDocument.save();
+      // otpDocument.save();
       console.log('Email sent: ' + info.response);
       res.send({ success: true, otp: otp });
     }
