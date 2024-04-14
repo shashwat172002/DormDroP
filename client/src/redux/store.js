@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
 import receiverReducer from './receiver/receiverSlice';
+import recSideSenderReducer from './recSideSender/recSideSenderSlice';
 import senderReducer from './sender/senderSlice';
 import otpReducer from './otp/otpSlice';
 import dashboardReducer from './dashboard/dashboardSlice';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   OTP: otpReducer,
   DASHBOARD:dashboardReducer,
   SENDER:senderReducer,
+  RECSIDESENDER:recSideSenderReducer,
 });
 
 
@@ -22,7 +24,6 @@ const persistConfig = {
   key: 'root',
   storage,
   version: 1,
-  
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

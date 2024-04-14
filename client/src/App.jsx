@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import SuccessfullyDelivered from "./pages/SuccessfullyDelivered";
 import SenderEnd1 from "./pages/SenderEnd1";
 import ReceiverEnd1 from "./pages/ReceiverEnd1";
+import Rec2Stopwatch from "./pages/Rec2Stopwatch";
 
 
 
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/successfullydelivered" element={<SuccessfullyDelivered/>} />
         <Route path="/senderend1" element={<SenderEnd1/>} />
         <Route path="/receiverend1" element={<ReceiverEnd1/>} />
+        <Route path="/rec2stopwatch" element={<Rec2Stopwatch/>} />
         
       </Routes>
       <ToastContainer/>
