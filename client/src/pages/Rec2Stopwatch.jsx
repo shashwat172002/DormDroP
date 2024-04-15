@@ -6,10 +6,16 @@ import io from "socket.io-client";
 const Rec2Stopwatch = () => {
   const { currentRecSideSender } = useSelector((state) => state.RECSIDESENDER);
 
+
+  console.log(`this is====${currentRecSideSender}`);
+
+
   const navigate = useNavigate();
 
   const c = 0.2;
   const [countdown, setCountdown] = useState();
+
+
 
   const socket = io.connect("http://localhost:3001");
 
@@ -19,10 +25,17 @@ const Rec2Stopwatch = () => {
 
   socket.on("sendMessageToClient2", (data) => {
     console.log("Received message from server:", data);
+    if(data==="yes")
+    navigate('/successfullyreceived');
   });
   socket.on("disconnect", () => {
     console.log("Disconnected from server");
   });
+
+
+
+
+
 
   useEffect(() => {
     const storedCountdown = localStorage.getItem("countdown");
@@ -58,7 +71,7 @@ const Rec2Stopwatch = () => {
     } else if (countdown === 0) {
       localStorage.removeItem("countdown");
       localStorage.removeItem("endTime");
-      navigate("/");
+     
     }
   }, [countdown]);
 

@@ -4,20 +4,39 @@ import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { theOtp } from '../redux/otp/otpSlice';
+import io from "socket.io-client";
 
+
+ 
 
 const SendOTP = () => {
+  const dispatch=useDispatch();
   const { currentReceiver } = useSelector((state) => state.RECEIVER);
   const navigate=useNavigate();
-  const dispatch=useDispatch();
   const email=currentReceiver.email;
   const formdata={
     "email":email,
   }
 
 
+
   const handleOnclick=async()=>{
     
+
+
+
+
+    const socket = io.connect("http://localhost:3001");
+      socket.on("connect", () => {
+        console.log("Connected to server");
+        socket.emit("picked", { message: "yes" });
+      });
+      
+      
+
+
+
+
     try {
     
       const res = await fetch('/api/otp/sendotp', {
@@ -35,11 +54,9 @@ const SendOTP = () => {
       
     
       if(res.ok) {
-       console.log('ho gya');
         console.log(data.otp);
-        dispatch(theOtp(data.otp))
+        dispatch(theOtp(data.otp));
         toast.success("OTP SENT SUCCESSFULLY");
-        
       }
     } catch (error) {
       console.log('failed from catch');
