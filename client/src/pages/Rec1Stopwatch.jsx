@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Rec1Stopwatch = ({t1}) => {
   const navigate = useNavigate();
-  
+ 
  const c=t1;
   const [countdown, setCountdown] = useState();
 
@@ -43,8 +43,10 @@ const Rec1Stopwatch = ({t1}) => {
     } else if (countdown === 0) {
       localStorage.removeItem('countdown');
       localStorage.removeItem('endTime');
-      navigate('/rec2stopwatch');
-      
+      navigate('/rec1_5');
+     
+
+     
     }
   }, [countdown]);
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { theDashboard } from "../redux/dashboard/dashboardSlice";
 
 import { signout } from "../redux/user/userSlice";
+import { theYourOrders } from "../redux/yourOrders/yourOrdersSlice";
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -54,6 +55,31 @@ export default function Header() {
     }
   };
 
+  const handleYourOrders = async () => {
+    try {
+      const res = await fetch(`/api/yourorders/useryourorders/${currentUser.username}`);
+      const data = await res.json();
+      
+      if (data.success === false) {
+        console.log("error from bakck");
+      }
+
+      if (res.ok) {
+        console.log("success");
+        console.log(data);
+        dispatch(theYourOrders(data));
+        navigate("/yourorders");
+      }
+    } catch (error) {
+      // if(a==null)
+      // {
+      //   console.log(a);
+      // }
+      
+      console.log("error from catch");
+    }
+  };
+
   return (
     <Navbar className="border-b-2">
       <Link
@@ -84,6 +110,7 @@ export default function Header() {
             </Dropdown.Header>
 
             <Dropdown.Item onClick={handleDashboard}>Dashboard</Dropdown.Item>
+            <Dropdown.Item onClick={handleYourOrders}>Your Orders</Dropdown.Item>
 
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
