@@ -104,6 +104,12 @@ export default function SignIn() {
               Sign Up
             </Link>
           </div>
+          <div className='flex gap-2 text-sm mt-5'>
+           
+            <Link to='/setpassword' className='text-blue-500'>
+            Forgot Password?
+            </Link>
+          </div>
           {errorMessage && (
             <Alert className='mt-5' color='failure'>
               {errorMessage}
