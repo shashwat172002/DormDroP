@@ -21,12 +21,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://dormdrop.onrender.com",
   },
+  path: '/socket.io/'
 });
+
 
 mongoose
   .connect(process.env.MONGO)

@@ -5,11 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { theOtp } from "../redux/otp/otpSlice";
 import io from "socket.io-client";
+import { Spinner } from "flowbite-react";
 
 const SendOTP = () => {
   const dispatch = useDispatch();
   const { currentReceiver } = useSelector((state) => state.RECEIVER);
   const [OtpSentSuccessfully, setOtpSentSuccessfully] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const email = currentReceiver.email;
   const formdata = {
@@ -18,6 +20,7 @@ const SendOTP = () => {
 
   const handleOnclick = async () => {
     try {
+      setLoading(true);
       const res = await fetch("/api/otp/sendotp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,6 +28,7 @@ const SendOTP = () => {
       });
 
       const data = await res.json();
+      setLoading(false);
       if (data.success === false) {
         setOtpSentSuccessfully(false);
         console.log("failed from try");
@@ -35,7 +39,7 @@ const SendOTP = () => {
         console.log(data.otp);
         dispatch(theOtp(data.otp));
         //sending this to index.js to rec 1_5
-        const socket = io.connect("http://localhost:3001");
+        const socket = io('https://dormdrop.onrender.com', { path: '/socket.io/' });
         socket.on("connect", () => {
           console.log("Connected to server");
           socket.emit("picked", { message: "yes" });
@@ -45,6 +49,7 @@ const SendOTP = () => {
         toast.success("OTP SENT SUCCESSFULLY");
       }
     } catch (error) {
+      setLoading(false);
       setOtpSentSuccessfully(false);
       toast.error("Something went wrong");
       console.log("failed from catch");
@@ -53,31 +58,45 @@ const SendOTP = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div className="text-3xl font-bold text-center mb-8">
-        The delivery partner has arrived outside of Gate-2. Please contact the
-        receiver at phone number {currentReceiver.mobileNumber}
+      <div className="p-4 mx-4 rounded-xl bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 flex flex-col items-center justify-center ">
+        <div className="text-2xl font-bold text-center mb-8">
+          <p> The delivery partner has arrived outside of Gate-2.</p>
+          <p>Please contact the receiver at phone number </p>
+        </div>
+        <div className="font-bold text-xl mb-8">
+          Mobile Number:  <a href={`tel:${currentReceiver.mobileNumber}`} className="text-blue-700 hover:text-blue-500">{currentReceiver.mobileNumber}</a>
+        </div>
+        <div className="mb-2">
+          <p>By clicking the Below button 
+            you confirm that you up the order and
+          send an OTP To the Receiver</p>
+        </div>
+        {OtpSentSuccessfully === false ? (
+          <button
+            onClick={handleOnclick}
+            className="hover:scale-105 transition-transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded"
+          >
+            Resend OTP/Confirm
+          </button>
+        ) : loading ? (
+          <button
+            onClick={handleOnclick}
+            className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded"
+          >
+            <>
+              <Spinner size="sm" />
+              <span className="pl-3">Loading...</span>
+            </>
+          </button>
+        ) : (
+          <button
+            onClick={handleOnclick}
+            className="hover:scale-105 transition-transform bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded"
+          >
+            Order picked? SendOtp/Confirm
+          </button>
+        )}
       </div>
-      <h1>
-        <b>
-          By clicking the Below button You confirm that you up the order and
-          send an OTP To the Receiver
-        </b>{" "}
-      </h1>
-      {OtpSentSuccessfully === false ? (
-        <button
-          onClick={handleOnclick}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Resend OTP/Confirm
-        </button>
-      ) : (
-        <button
-          onClick={handleOnclick}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Order picked? SendOtp/Confirm
-        </button>
-      )}
     </div>
   );
 };
