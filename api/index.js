@@ -19,161 +19,82 @@ import path from 'path';
 dotenv.config();
 
 const app = express();
-app.use(express.json());
-
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "*",
   },
-  path: '/socket.io/'
 });
 
 app.use(cors());
+app.use(express.json());
 
-mongoose
-  .connect(process.env.MONGO)
+mongoose.connect(process.env.MONGO)
   .then(() => {
     console.log("mongodb connected");
   })
   .catch((err) => {
-    console.log(err);
+    console.error("MongoDB connection error:", err);
   });
-  const __dirname = path.resolve();
 
-server.listen(3001, () => {
-  console.log("SERVER IS RUNNING");
-});
+const __dirname = path.resolve();
 
-
-//OTP VERIFIED COMING from "afterPickingTimer" to "rec2stopwatch"
 io.on("connection", (socket) => {
   console.log("New client connected");
 
   socket.on("Verified", (data) => {
     console.log("Received message:", data);
-
     socket.broadcast.emit("sendMessageToClient2", data.message);
-    console.log("Sent message to Client 2");
   });
-});
-
-
-
-//coming from sendOtp to rec1_5
-io.on("connection", (socket) => {
-  console.log("New client connected");
 
   socket.on("picked", (data) => {
     console.log("Received message:", data);
-
     socket.broadcast.emit("sendMessageToRec1_5", data.message);
-    console.log("Sent message to sendMessageToRec1_5");
   });
-});
-
-
-//receiver to receiverpost
-io.on("connection", (socket) => {
-  console.log("New client connected");
 
   socket.on("receiverFormSubmitted", (data) => {
     console.log("Received message:", data);
-
     socket.broadcast.emit("sendMessageToReceiverPost", data.message);
-    console.log("Sent message to sendMessageToReceiverPost");
   });
-});
-
-
-
-//Delete receiver
-io.on("connection", (socket) => {
-  console.log("New client connected");
 
   socket.on("deleteInProcessReceiver", async (registrationNumber) => {
     try {
-      // Find the receiver document by registrationNumber
       const receiver = await Receiver.findOneAndDelete({ registrationNumber });
-   
-
       if (!receiver) {
         console.log(`Receiver with registration number ${registrationNumber} not found.`);
         return;
       }
-   
-
-      // Delete the receiver document
-      // await receiver.remove();
       console.log(`Receiver with registration number ${registrationNumber} deleted successfully.`);
-   
     } catch (error) {
       console.error("Error deleting receiver:", error.message);
     }
   });
-
-
-
-
 
   socket.on("deleteInProcessSender", async (senderRegistrationNumber) => {
     try {
-      const registrationNumber=senderRegistrationNumber;
-      // Find the receiver document by registrationNumber
-      const sender = await Sender.findOneAndDelete({ registrationNumber });
-   
-       
+      const sender = await Sender.findOneAndDelete({ registrationNumber: senderRegistrationNumber });
       if (!sender) {
-        console.log(`Sender with registration number ${registrationNumber} not found.`);
+        console.log(`Sender with registration number ${senderRegistrationNumber} not found.`);
         return;
       }
-   
-
-      // Delete the receiver document
-      // await receiver.remove();
-      console.log(`Sender with registration number ${registrationNumber} deleted successfully.`);
-   
+      console.log(`Sender with registration number ${senderRegistrationNumber} deleted successfully.`);
     } catch (error) {
-      console.error("Error deleting receiver:", error.message);
+      console.error("Error deleting sender:", error.message);
     }
   });
-
-
-
-
-
-
-
 
   socket.on("deleteSenderend1model", async (senderEndModelId) => {
     try {
-   
-      // Find the receiver document by registrationNumber
       const Senderend1 = await SenderEnd1.findOneAndDelete(senderEndModelId);
-   
-       
       if (!Senderend1) {
-        console.log(`Senderend1 with registration number ${senderEndModelId} not found.`);
+        console.log(`Senderend1 with ID ${senderEndModelId} not found.`);
         return;
       }
-   
-      console.log(`Senderend1 with registration number ${senderEndModelId} deleted successfully.`);
-   
+      console.log(`Senderend1 with ID ${senderEndModelId} deleted successfully.`);
     } catch (error) {
-      console.error("Error deleting receiver:", error.message);
+      console.error("Error deleting senderEnd1:", error.message);
     }
   });
-
-
-
-
-
-});
-
-
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
 });
 
 app.use("/api/auth", authRoutes);
@@ -190,13 +111,19 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
-//middleware
+// Error handling middleware
 app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 503;
+  const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
   res.status(statusCode).json({
     success: false,
     statusCode,
     message,
   });
+});
+
+const PORT = process.env.PORT || 3001;
+
+server.listen(PORT, () => {
+  console.log(`SERVER IS RUNNING ON PORT ${PORT}`);
 });

@@ -18,7 +18,7 @@ const Rec2Stopwatch = () => {
 
 
 
-  const socket = io('https://dormdrop.onrender.com', { path: '/socket.io/' });
+  const socket = io.connect("http://localhost:3001");
   socket.on("connect", () => {
     console.log("Connected to server");
   });
