@@ -69,10 +69,10 @@ const SuccessfullyReceived = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md">
-        <h1 className="text-2xl font-bold mb-4 text-green-500">Successful Delivery!</h1>
-        <p className="text-gray-700">Redirecting in {countdown} seconds...</p>
-      </div>
+    <div className="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 p-8 rounded shadow-md">
+      <h1 className="text-2xl font-bold mb-4 text-black">Successful Delivery!</h1>
+      <p className="text-gray-700">Redirecting in {countdown} seconds...</p>
+    </div>
     </div>
   );
 };

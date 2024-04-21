@@ -10,6 +10,7 @@ const Receiver = () => {
   const [errorMessage, setErrorMessage] = useState(null);
    const [loading, setLoading] = useState(false);
    const navigate=useNavigate();
+   var t1;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -47,7 +48,8 @@ const Receiver = () => {
      
       setLoading(false);
       if(res.ok) {
-        navigate('/receiverend1');
+        t1=formData.waitTime;
+        navigate(`/receiverend1/${t1}`);
         //send this to sender's post lists
          
       }
@@ -59,8 +61,8 @@ const Receiver = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="max-w-md bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-semibold mb-4 text-center">Registration Form</h1>
+      <div className="max-w-md my-8 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-semibold mb-4 text-center">Enter Your Details</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-lg font-medium">Name</label>
@@ -79,7 +81,7 @@ const Receiver = () => {
               id="registrationNumber"
            
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2   border rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Enter your registration number"
             />
           </div>
@@ -101,7 +103,7 @@ const Receiver = () => {
               id="mobileNumber"
            
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2  border rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Enter your mobile number"
             />
           </div>
@@ -113,7 +115,7 @@ const Receiver = () => {
              
            
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  border rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Example 15"
             />
           </div>
@@ -125,7 +127,7 @@ const Receiver = () => {
              
            
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  border rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Example 707"
             />
           </div>
@@ -137,14 +139,14 @@ const Receiver = () => {
              
            
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  border rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Example 10 mins"
             />
           </div>
           <div>
             <button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
+              className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
             >
                {loading ? (
                 <>
