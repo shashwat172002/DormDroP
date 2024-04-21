@@ -9,8 +9,7 @@ export default function Rec1_5() {
     const navigate=useNavigate();
     const { currentRecSideSender } = useSelector((state) => state.RECSIDESENDER);
 
-  const socket = io.connect("http://localhost:3001");
-
+    const socket = io('https://dormdrop.onrender.com', { path: '/socket.io/' });
   socket.on("connect", () => {
     console.log("Connected to server");
   });

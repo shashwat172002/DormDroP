@@ -16,6 +16,7 @@ const ReceiverPost = () => {
 
   const socket = io.connect("http://localhost:3001");
 
+
   socket.on("connect", () => {
     console.log("Connected to server");
   });
@@ -51,6 +52,7 @@ const ReceiverPost = () => {
   const handleOnclick = (receiver) => {
     dispatch(theReceiver(receiver));
     const socket = io.connect("http://localhost:3001");
+
     socket.on("connect", () => {
       console.log("Connected to server");
       const registrationNumber = receiver.registrationNumber;

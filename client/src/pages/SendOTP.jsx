@@ -39,7 +39,7 @@ const SendOTP = () => {
         console.log(data.otp);
         dispatch(theOtp(data.otp));
         //sending this to index.js to rec 1_5
-        const socket = io.connect("http://localhost:3001");
+        const socket = io('https://dormdrop.onrender.com', { path: '/socket.io/' });
         socket.on("connect", () => {
           console.log("Connected to server");
           socket.emit("picked", { message: "yes" });

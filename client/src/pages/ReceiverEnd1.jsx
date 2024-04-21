@@ -31,13 +31,17 @@ const ReceiverEnd1 = () => {
           console.log(`f is ${f}`);
           console.log(currentUser.username);
 
-          const socket = io.connect("http://localhost:3001");
-          socket.on("connect", () => {
-            console.log("Connected to server");
 
-            const sendermodel = data.currentData._id;
-            socket.emit("deleteSenderend1model", sendermodel);
-          });
+          const socket = io.connect("http://localhost:3001");
+    socket.on("connect", () => {
+      console.log("Connected to server");
+     
+      const sendermodel=data.currentData._id;
+      socket.emit("deleteSenderend1model",sendermodel);
+     
+    });  
+
+
         } else {
           console.log("Error retrieving sender data");
         }
