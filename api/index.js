@@ -19,17 +19,17 @@ import path from 'path';
 dotenv.config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://dormdrop.onrender.com",
+    origin: "*",
   },
   path: '/socket.io/'
 });
 
+app.use(cors());
 
 mongoose
   .connect(process.env.MONGO)

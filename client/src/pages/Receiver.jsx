@@ -21,7 +21,7 @@ const Receiver = () => {
     e.preventDefault();
 
 
-    const socket = io('https://dormdrop.onrender.com', { path: '/socket.io/' });
+    const socket = io.connect("http://localhost:3001");
     socket.on("connect", () => {
       console.log("Connected to server");
       socket.emit("receiverFormSubmitted", { message: "receiverFormSubmitted" });
