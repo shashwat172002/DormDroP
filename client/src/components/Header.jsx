@@ -88,15 +88,9 @@ export default function Header() {
 
 
   return (
-<<<<<<< HEAD
-    <Navbar className="bg-gray-800">
-      <Link to="/" className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold text-gray-300">
-        <span className="px-2 py-1 mr-1 span-color rounded-lg bg-gray-400 text-gray-800 font-semibold">
-=======
     <Navbar className="border-b-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 ">
       <Link to="/" className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white">
         <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
           Dorm
         </span>
         Drop
@@ -107,11 +101,7 @@ export default function Header() {
           <FaMoon />
         </Button> */}
         {currentUser ? (
-<<<<<<< HEAD
-          <Dropdown arrowIcon={false} inline label={<Avatar alt="user"  />}>
-=======
           <Dropdown arrowIcon={false} inline label={<Avatar alt="user" rounded />}>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
             <Dropdown.Header>
               <span className="block text-sm">@{currentUser.username}</span>
               <span className="block text-sm font-medium truncate">{currentUser.email}</span>
@@ -139,13 +129,8 @@ export default function Header() {
         </Navbar.Link>
         <div className="relative" ref={dropdownRef}>
           <button onClick={toggleDropdown} className="flex items-center">
-<<<<<<< HEAD
-            <span className="text-lg mr-2 text-gray-400">About</span>
-            {showDropdown ? <RiArrowDropUpLine className="text-gray-400" size={24} /> : <RiArrowDropDownLine className="text-gray-400" size={24} />}
-=======
             <span className="text-lg mr-2">About</span>
             {showDropdown ? <RiArrowDropUpLine size={24} /> : <RiArrowDropDownLine size={24} />}
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
           </button>
           {showDropdown && (
             <div className="absolute top-full left-0 mt-1 bg-white shadow-md rounded-lg">

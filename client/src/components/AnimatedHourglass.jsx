@@ -19,8 +19,4 @@ const AnimatedHourglass = () => {
   );
 };
 
-<<<<<<< HEAD
 export default AnimatedHourglass;
-=======
-export default AnimatedHourglass;
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
