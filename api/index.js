@@ -8,28 +8,27 @@ import otpRoutes from "./routes/otp.route.js";
 import dashboardRoutes from "./routes/dashboard.route.js";
 import yourOrdersRoutes from "./routes/yourOrders.route.js";
 import senderendRoutes from "./routes/senderEnd.route.js";
-import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import Receiver from "./models/receiver.model.js";
 import Sender from "./models/sender.model.js";
 import SenderEnd1 from "./models/senderEnd1.model.js";
-import path from 'path';
 
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
-});
-
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO)
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+  },
+});
+
+mongoose
+  .connect(process.env.MONGO)
   .then(() => {
     console.log("mongodb connected");
   })
@@ -37,7 +36,10 @@ mongoose.connect(process.env.MONGO)
     console.error("MongoDB connection error:", err);
   });
 
-const __dirname = path.resolve();
+server.listen(3001, () => {
+  console.log("SERVER IS RUNNING");
+});
+
 
 io.on("connection", (socket) => {
   console.log("New client connected");
@@ -60,11 +62,18 @@ io.on("connection", (socket) => {
   socket.on("deleteInProcessReceiver", async (registrationNumber) => {
     try {
       const receiver = await Receiver.findOneAndDelete({ registrationNumber });
+   
+
       if (!receiver) {
         console.log(`Receiver with registration number ${registrationNumber} not found.`);
         return;
       }
+   
+
+      // Delete the receiver document
+      // await receiver.remove();
       console.log(`Receiver with registration number ${registrationNumber} deleted successfully.`);
+   
     } catch (error) {
       console.error("Error deleting receiver:", error.message);
     }
@@ -72,12 +81,21 @@ io.on("connection", (socket) => {
 
   socket.on("deleteInProcessSender", async (senderRegistrationNumber) => {
     try {
-      const sender = await Sender.findOneAndDelete({ registrationNumber: senderRegistrationNumber });
+      const registrationNumber=senderRegistrationNumber;
+      // Find the receiver document by registrationNumber
+      const sender = await Sender.findOneAndDelete({ registrationNumber });
+   
+       
       if (!sender) {
         console.log(`Sender with registration number ${senderRegistrationNumber} not found.`);
         return;
       }
-      console.log(`Sender with registration number ${senderRegistrationNumber} deleted successfully.`);
+   
+
+      // Delete the receiver document
+      // await receiver.remove();
+      console.log(`Sender with registration number ${registrationNumber} deleted successfully.`);
+   
     } catch (error) {
       console.error("Error deleting sender:", error.message);
     }
@@ -86,15 +104,30 @@ io.on("connection", (socket) => {
   socket.on("deleteSenderend1model", async (senderEndModelId) => {
     try {
       const Senderend1 = await SenderEnd1.findOneAndDelete(senderEndModelId);
+   
+       
       if (!Senderend1) {
         console.log(`Senderend1 with ID ${senderEndModelId} not found.`);
         return;
       }
-      console.log(`Senderend1 with ID ${senderEndModelId} deleted successfully.`);
+   
+      console.log(`Senderend1 with registration number ${senderEndModelId} deleted successfully.`);
+   
     } catch (error) {
       console.error("Error deleting senderEnd1:", error.message);
     }
   });
+
+
+
+
+
+});
+
+
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000!");
 });
 
 app.use("/api/auth", authRoutes);
@@ -104,6 +137,14 @@ app.use("/api/otp", otpRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/yourorders", yourOrdersRoutes);
 app.use("/api/senderend", senderendRoutes);
+app.use("/api/rating", ratingRoutes);
+
+app.use(express.static(path.join(__dirname,'/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
+
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
@@ -120,10 +161,4 @@ app.use((err, req, res, next) => {
     statusCode,
     message,
   });
-});
-
-const PORT = process.env.PORT || 3001;
-
-server.listen(PORT, () => {
-  console.log(`SERVER IS RUNNING ON PORT ${PORT}`);
 });

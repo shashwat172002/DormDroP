@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+import { io } from "socket.io-client";
+import AnimatedHourglass from "../components/AnimatedHourglass";
+import SP from "./cycle.jpg";
+=======
 import io from "socket.io-client";
 import AnimatedHourglass from "../components/AnimatedHourglass";
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
 const AfterPickingTimer = () => {
   const navigate = useNavigate();
@@ -81,28 +87,33 @@ const AfterPickingTimer = () => {
       console.log("enter otp");
     }
     if (otpData == currentOtp) {
-      const socket = io.connect("http://localhost:3001");
+      const socket = io.connect("http://localhost:3000"); //https://dormdrop.onrender.com
       socket.on("connect", () => {
         console.log("Connected to server");
         socket.emit("Verified", { message: "yes" });
       });
       toast.success("OTP verified SUCCESSFULLY");
-      navigate('/successfullydelivered');
+      navigate("/successfullydelivered");
     } else {
       toast.error("invalid OTP");
     }
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${SP})` }}>
       {alreadyReached === true || countdown === 0 ? (
+<<<<<<< HEAD
+        <div className="flex items-center justify-center h-screen w-full">
+          <div className="bg-white bg-opacity-80 shadow-md rounded-lg p-8">
+=======
         <div className="flex items-center justify-center h-screen">
           <div className="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 shadow-md rounded-lg p-8">
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
             <h2 className="text-2xl font-semibold mb-4">Verify OTP</h2>
             <input
               type="text"
               placeholder="Enter OTP"
-              className="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full"
+              className=" rounded-lg px-4 py-2 mb-4 w-full"
               onChange={handleChange}
             />
             <button
@@ -114,6 +125,59 @@ const AfterPickingTimer = () => {
           </div>
         </div>
       ) : (
+<<<<<<< HEAD
+        <div className="flex flex-col items-center justify-center min-h-screen px-6 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl">
+            {/* Left side */}
+            <div className="w-full p-6 sm:p-12 mt-4 bg-white bg-opacity-80 shadow-md rounded-lg flex flex-col items-center justify-center">
+              <h1 className="text-xl font-bold text-center mb-4 text-gray-800">
+                Time in which you have to deliver.
+              </h1>
+              <p className="text-center text-gray-700">
+                Already reached? Click on the button
+              </p>
+              <div className="flex items-center justify-center text-6xl sm:text-8xl font-bold text-gray-800">
+                <div>
+                  {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                </div>
+                <AnimatedHourglass />
+              </div>
+            </div>
+            {/* Right side */}
+            <div className="w-full p-6 sm:p-12 bg-white bg-opacity-80 shadow-md rounded-lg overflow-hidden">
+              <h2 className="text-xl font-bold mb-4 text-gray-800">Receiver Information</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex flex-col">
+                  <p className="text-gray-700 font-semibold">Name:</p>
+                  <p className="text-gray-600">{currentReceiver.name}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-800 font-semibold">Registration Number:</p>
+                  <p className="text-gray-600">{currentReceiver.registrationNumber}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-800 font-semibold">Email:</p>
+                  <p className="text-gray-600 break-words">{currentReceiver.email}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-800 font-semibold">Mobile Number:</p>
+                  <p className="text-gray-600">{currentReceiver.mobileNumber}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-800 font-semibold">Block:</p>
+                  <p className="text-gray-600">{currentReceiver.block}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-800 font-semibold">Room:</p>
+                  <p className="text-gray-600">{currentReceiver.room}</p>
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-gray-800 font-semibold">Wait Time:</p>
+                  <p className="text-gray-600">{currentReceiver.waitTime}</p>
+                </div>
+              </div>
+            </div>
+=======
         <>
           <div className="flex flex-col items-center justify-center px-6 mb-8 sm:px-6 lg:px-8">
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
@@ -162,6 +226,7 @@ const AfterPickingTimer = () => {
         </div>
       </div>
     </div>
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
           </div>
           <div className="flex justify-center mt-1 my-10">
             <button
@@ -171,8 +236,12 @@ const AfterPickingTimer = () => {
               Already reached?
             </button>
           </div>
+<<<<<<< HEAD
+        </div>
+=======
           </div>
         </>
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
       )}
     </div>
     

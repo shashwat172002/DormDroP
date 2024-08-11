@@ -2,6 +2,10 @@ import { Spinner } from "flowbite-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
+import SP from "./SP.jpg";
+=======
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
 export default function SetPassword() {
   const navigate = useNavigate();
@@ -65,15 +69,27 @@ export default function SetPassword() {
   };
 
   return (
+<<<<<<< HEAD
+    <div style={{
+      backgroundImage: `url(${SP})`,
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+    }}>
+      {OtpSentSuccessfully === true ? (
+        <div className="flex items-center justify-center h-screen">
+          <div className="bg-white  p-8 rounded-lg shadow-md ">
+            <h2 className="text-2xl font-bold mb-3">Verify OTP</h2>
+=======
     <div>
       {OtpSentSuccessfully === true ? (
         <div className="flex items-center justify-center h-screen">
           <div className="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 p-8 rounded shadow-md ">
             <h2 className="text-2xl font-bold mb-4">Verify OTP</h2>
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
             <input
               type="text"
               placeholder="Enter OTP"
-              className="border border-gray-300 rounded-lg px-4 py-2 mb-4 w-full"
+              className="border border-gray-300 rounded-lg px-4 py-2 mb-2 w-full"
               onChange={handleChangeVerify}
             />
             <button
@@ -85,17 +101,30 @@ export default function SetPassword() {
           </div>
         </div>
       ) : (
+<<<<<<< HEAD
+        <div className="flex flex-col items-center  justify-center h-screen">
+          <div className="p-8 bg-white  rounded-lg shadow-md">
+            <h1 className="text-2xl font-semibold mb-1">
+              Enter your Registration Number
+            </h1>
+            <div className="flex flex-col bg-opacity-100 items-center">
+=======
         <div className="flex flex-col items-center justify-center h-screen">
           <div className="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 p-8 rounded shadow-md">
             <h1 className="text-2xl font-semibold mb-1">
               Enter your Registration Number
             </h1>
             <div className="flex flex-col items-center">
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               <label htmlFor="registrationNumber" className="mb-2"></label>
               <input
                 type="text"
                 id="registrationNumber"
+<<<<<<< HEAD
+                className="px-4 py-2  border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+=======
                 className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                 placeholder="Registration Number"
                 onChange={handleChange}
               />

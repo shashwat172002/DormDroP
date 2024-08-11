@@ -4,7 +4,7 @@ const initialState = {
   currentRecSideSender: null,
 };
 
-const recSideSenderSlice = createSlice({
+const recSideSenderrSlice = createSlice({
   name: 'RECSIDESENDER',
   initialState,
   reducers: {
@@ -14,6 +14,16 @@ const recSideSenderSlice = createSlice({
   },
 });
 
-export const { theRecSideSender} = recSideSenderSlice.actions;
+export const { theRecSideSender} = recSideSenderrSlice.actions;
 
-export default recSideSenderSlice.reducer;
+export default recSideSenderrSlice.reducer;
+
+
+
+
+
+
+
+
+
+

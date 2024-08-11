@@ -4,8 +4,14 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { theOtp } from "../redux/otp/otpSlice";
+<<<<<<< HEAD
+import { io } from "socket.io-client";
+import { Spinner } from "flowbite-react";
+import SP from "./cycle.jpg";
+=======
 import io from "socket.io-client";
 import { Spinner } from "flowbite-react";
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
 const SendOTP = () => {
   const dispatch = useDispatch();
@@ -39,7 +45,9 @@ const SendOTP = () => {
         console.log(data.otp);
         dispatch(theOtp(data.otp));
         //sending this to index.js to rec 1_5
-        const socket = io.connect("http://localhost:3001");
+        const socket = io.connect("http://localhost:3000");
+
+        //   https://dormdrop.onrender.com
         socket.on("connect", () => {
           console.log("Connected to server");
           socket.emit("picked", { message: "yes" });
@@ -57,19 +65,43 @@ const SendOTP = () => {
   };
 
   return (
+<<<<<<< HEAD
+    <div
+      className="flex flex-col items-center justify-center h-screen"
+      style={{ backgroundImage: `url(${SP})`, backgroundSize: "cover" }}
+    >
+      <div className="p-4 mx-4 rounded-xl bg-white bg-opacity-80 flex flex-col items-center justify-center ">
+=======
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="p-4 mx-4 rounded-xl bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 flex flex-col items-center justify-center ">
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         <div className="text-2xl font-bold text-center mb-8">
           <p> The delivery partner has arrived outside of Gate-2.</p>
           <p>Please contact the receiver at phone number </p>
         </div>
         <div className="font-bold text-xl mb-8">
+<<<<<<< HEAD
+          Mobile Number:{" "}
+          <a
+            href={`tel:${currentReceiver.mobileNumber}`}
+            className="text-blue-700 hover:text-blue-500"
+          >
+            {currentReceiver.mobileNumber}
+          </a>
+        </div>
+        <div className="mb-2">
+          <p>
+            By clicking the Below button you confirm that you up the order and
+            send an OTP To the Receiver
+          </p>
+=======
           Mobile Number:  <a href={`tel:${currentReceiver.mobileNumber}`} className="text-blue-700 hover:text-blue-500">{currentReceiver.mobileNumber}</a>
         </div>
         <div className="mb-2">
           <p>By clicking the Below button 
             you confirm that you up the order and
           send an OTP To the Receiver</p>
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         </div>
         {OtpSentSuccessfully === false ? (
           <button

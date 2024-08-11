@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentReceiver: null,
-  remainingTime: 0,
 };
 
 const receiverSlice = createSlice({
@@ -15,6 +14,16 @@ const receiverSlice = createSlice({
   },
 });
 
-export const { theReceiver,UpdateTime} = receiverSlice.actions;
+export const { theReceiver} = receiverSlice.actions;
 
 export default receiverSlice.reducer;
+
+
+
+
+
+
+
+
+
+

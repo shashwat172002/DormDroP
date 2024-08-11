@@ -10,6 +10,7 @@ const dashboardSlice = createSlice({
   reducers: {
     theDashboard: (state, action) => {
       state.currentDashboard = action.payload;
+      
     },
   },
 });

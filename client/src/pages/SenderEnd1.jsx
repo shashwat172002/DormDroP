@@ -8,7 +8,11 @@ export default function SenderEnd1() {
   const { currentSender } = useSelector((state) => state.SENDER);
   const [loading, setLoading] = useState(false);
  
+<<<<<<< HEAD
+ 
+=======
   
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
   const navigate = useNavigate();
 
@@ -26,7 +30,11 @@ export default function SenderEnd1() {
         if (data.success === false) {
           console.log("error from bakck");
           toast.error("Something went wrong...")
+<<<<<<< HEAD
+         
+=======
           
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         }
 
         if (res.ok) {
@@ -59,4 +67,8 @@ export default function SenderEnd1() {
       )}
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b

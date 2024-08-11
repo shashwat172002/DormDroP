@@ -1,5 +1,6 @@
 import express from 'express';
-import { receiverEnd1, senderEnd1 } from '../controllers/senderEnd1.controller.js';
+import { senderEnd1 } from '../controllers/senderEnd1.controller.js';
+import { receiverEnd1 } from '../controllers/senderEnd1.controller.js';
 const router = express.Router();
 
 

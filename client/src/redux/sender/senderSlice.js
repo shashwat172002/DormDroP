@@ -17,3 +17,13 @@ const senderSlice = createSlice({
 export const { theSender} = senderSlice.actions;
 
 export default senderSlice.reducer;
+
+
+
+
+
+
+
+
+
+

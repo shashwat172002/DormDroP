@@ -1,18 +1,20 @@
-import SenderEnd1 from "../models/senderEnd1.model.js";
-import { errorHandler } from "../utils/error.js";
+import SenderEnd1 from '../models/senderEnd1.model.js';
+import { errorHandler } from '../utils/error.js';
+
 
 export const senderEnd1 = async (req, res, next) => {
   const { currentReceiver, currentSender } = req.body;
 
+
   if (!currentReceiver || !currentSender) {
-    return next(errorHandler(400, "All fields are required"));
+    return next(errorHandler(400, 'All fields are required'));
   }
 
   try {
     // Create a new instance of the ReceiverEnd1 model with the currentReceiver and currentSender objects
     const newData = new SenderEnd1({
       currentReceiver,
-      currentSender,
+      currentSender
     });
 
     // Save the new data to MongoDB
@@ -22,12 +24,30 @@ export const senderEnd1 = async (req, res, next) => {
     res.status(201).json(savedData);
   } catch (error) {
     // Log the error for troubleshooting
-    console.error("Error saving data to MongoDB:", error);
-
+    console.error('Error saving data to MongoDB:', error);
+    
     // Pass any errors to the error handling middleware
     next(error);
   }
 };
+
+
+
+// export const receiverEnd1 = async (req, res, next) => {
+//   try {
+//     const { username } = req.params; // Assuming the username is passed as a URL parameter
+//     const data = await SenderEnd1.findOne({ 'currentReceiver.registrationNumber': username })
+//       .populate('currentSender', '-__v'); // Populate the currentSender field, excluding __v field
+//     if (!data) {
+//       // If data is not found, you can return a 404 response or an empty object
+//       return res.status(404).json({ message: 'Data not found' });
+//     }
+//     res.json(data);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 
 export const receiverEnd1 = async (req, res, next) => {
   try {
@@ -58,3 +78,5 @@ export const receiverEnd1 = async (req, res, next) => {
     next(error);
   }
 };
+
+

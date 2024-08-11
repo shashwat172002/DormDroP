@@ -37,11 +37,11 @@ export const getUserDashboard = async (req, res, next) => {
     const { username } = req.params; // Assuming the username is passed as a URL parameter
     const dashboard = await DASHBOARD.findOne({ username }); // Find the dashboard with the provided username
     if (!dashboard) {
-      return res.json(0);
+      // return res.status(404).json({ message: 'Dashboard not found' });
+      return  res.json(0);
     }
     res.json(dashboard);
   } catch (error) {
     next(error);
   }
 };
-

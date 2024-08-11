@@ -26,7 +26,7 @@ export const sendotp = async (req, res, next) => {
 
   if(!email ||email==='')
   next(errorHandler(606, 'email is required'));
- 
+  
   const otp = generateOTP();
 
   const otpDocument = new OTP({
@@ -64,14 +64,14 @@ export const verifyuser = async (req, res, next) => {
     const {regNum}=req.body;
  
     const username=regNum;
-   
+    
     const validUser = await User.findOne({ username });
     if (!validUser) {
       return next(errorHandler(403, 'User not found'));
     }
 
 
-   
+    
     const otp = generateOTP();
 
     const  email=validUser.email;
@@ -83,7 +83,7 @@ export const verifyuser = async (req, res, next) => {
       subject: 'Forgot password',
       text: `Your OTP is ${otp}`,
     };
- 
+  
     // Send email
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
@@ -97,7 +97,7 @@ export const verifyuser = async (req, res, next) => {
     });
    
   } catch (error) {
-   
+    
     next(error);
   }
 
@@ -107,12 +107,12 @@ export const verifyuser = async (req, res, next) => {
 
 export const setforgotpassword = async (req, res, next) =>{
 
- 
+  
   try {
   const {confnewPass}=req.body;
   const {username}=req.params;
 
- 
+  
   const hashedPassword = bcryptjs.hashSync(confnewPass, 10);
   const updatedUser = await User.findOneAndUpdate(
     { username },

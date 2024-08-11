@@ -6,7 +6,7 @@ const senderSchema = new mongoose.Schema({
         required: true,
        
     },
-    registrationNumber:{
+    registrationNumber:{   
         type: String,
         required: true,
         unique: true,
