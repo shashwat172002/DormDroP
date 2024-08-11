@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Alert, Spinner } from "flowbite-react";
 import { FiX } from "react-icons/fi"; // Import the X icon from react-icons
-<<<<<<< HEAD
-import SP from "./block.jpg";
-=======
-
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 export default function YourOrders() {
   const { currentYourOrders } = useSelector((state) => state.YOURORDERS);
 
@@ -50,63 +45,20 @@ export default function YourOrders() {
   }, [selectedSender]);
 
   return (
-<<<<<<< HEAD
-    <div className="min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${SP})` }}>
-      {loading ? (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-200 opacity-90 z-50">
-          <Spinner size="lg" />
-=======
     <>
       {loading ? (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-200 opacity-90 z-50">
           <Spinner size='lg' />
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         </div>
       ) : (
         <div className="container mx-auto p-4">
           {currentYourOrders === 0 ? (
             <div className="text-center">
-<<<<<<< HEAD
-              <h1 className="text-3xl font-bold mb-4">
-                You haven't received any orders yet!
-              </h1>
-=======
               <h1 className="text-3xl font-bold mb-4">You haven't received any orders yet!</h1>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               <p className="text-gray-600">Keep up the good work!</p>
             </div>
           ) : (
             <>
-<<<<<<< HEAD
-              <p className="text:xl sm:text-3xl font-bold text-center mb-5">
-                Total Numbers of orders received by you:{" "}
-                <span className="rounded-md p-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white sm:">
-                  {senders.length}
-                </span>
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {senders.map((sender, index) => (
-                  <div
-                    key={index}
-                    className="relative bg-white opacity-80 text-black text-xl rounded-lg shadow-md p-4 transition-transform transform hover:scale-105 hover:z-10 cursor-pointer sender-card"
-                    onClick={() => handleSenderClick(sender)}
-                  >
-                    <div className="absolute inset-0 bg-gray-200 bg-opacity-30 backdrop-blur-lg rounded-lg"></div>
-                    <ul className="relative z-10 text-center font-lobster">
-                      <li>
-                        <span className="">Name:</span> {sender.name}
-                      </li>
-                      <li>
-                        <span className="">Registration Number:</span>{" "}
-                        {sender.registrationNumber}
-                      </li>
-                      <li>
-                        <span className="">Block:</span> {sender.block}
-                      </li>
-                      <li>
-                        <span className="">Room:</span> {sender.room}
-                      </li>
-=======
             <p className="text:xl sm:text-3xl font-bold text-center mb-5">Total Numbers of orders received by you: <span className="rounded-md p-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white sm:">{senders.length}</span></p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {senders.map((sender, index) => (
@@ -117,7 +69,6 @@ export default function YourOrders() {
                       <li><span className="">Registration Number:</span> {sender.registrationNumber}</li>
                       <li><span className="">Block:</span> {sender.block}</li>
                       <li><span className="">Room:</span> {sender.room}</li>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                     </ul>
                   </div>
                 ))}
@@ -125,24 +76,6 @@ export default function YourOrders() {
               {/* Pop-up for selected sender */}
               {selectedSender && (
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
-<<<<<<< HEAD
-                  <div className="relative size-80 flex flex-col items-center justify-center bg-white opacity-80 text-black text-xl rounded-3xl shadow-md p-4 pop-up">
-                    <div className="absolute inset-0 bg-gray-200 bg-opacity-30 backdrop-blur-lg rounded-lg"></div>
-                    <div
-                      className="absolute top-4 right-4 cursor-pointer"
-                      onClick={handleClosePopup}
-                    >
-                      <FiX className="text-black text-xl hover:text-red-500" />
-                    </div>
-                    <ul className="relative z-10 text-center font-lobster">
-                      <li>
-                        <span className="">Name:</span> {selectedSender.name}
-                      </li>
-                      <li>
-                        <span className="">Registration Number:</span>{" "}
-                        {selectedSender.registrationNumber}
-                      </li>
-=======
                   <div className="relative size-80 flex flex-col items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-900 to-pink-500 text-white text-xl rounded-3xl shadow-md p-4 pop-up">
                     <div className="absolute inset-0 bg-gray-200 bg-opacity-30 backdrop-blur-lg rounded-lg"></div>
                     <div className="absolute top-4 right-4 cursor-pointer" onClick={handleClosePopup}>
@@ -151,7 +84,6 @@ export default function YourOrders() {
                     <ul className="relative z-10 text-center font-lobster">
                       <li><span className="">Name:</span> {selectedSender.name}</li>
                       <li><span className="">Registration Number:</span> {selectedSender.registrationNumber}</li>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                     </ul>
                   </div>
                 </div>

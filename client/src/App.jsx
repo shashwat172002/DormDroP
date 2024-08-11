@@ -26,12 +26,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import SetPassword from "./pages/SetPassword";
 import SetForgotPassword from "./pages/SetForgotPassword";
 import Rec1Stopwatch from "./pages/Rec1Stopwatch";
-<<<<<<< HEAD
-import Ratings from "./pages/Ratings";
-=======
 
 
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
 export default function App() {
   return (
@@ -44,32 +40,6 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/contactus" element={<ContactUs />} />
 
-<<<<<<< HEAD
-        <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/sender" element={<Sender />} />
-          <Route path="/receiver" element={<Receiver />} />
-          <Route path="/receiverpost" element={<ReceiverPost />} />
-          <Route path="/senderpost" element={<SenderPost />} />
-          <Route path="/stopwatch" element={<Stopwatch />} />
-          <Route path="/afterpickingtimer" element={<AfterPickingTimer />} />
-          <Route path="/sendotp" element={<SendOTP />} />
-          <Route
-            path="/successfullydelivered"
-            element={<SuccessfullyDelivered />}
-          />
-          <Route
-            path="/successfullyreceived"
-            element={<SuccessfullyReceived />}
-          />
-          <Route path="/senderend1" element={<SenderEnd1 />} />
-          <Route path="/receiverend1/:t1" element={<ReceiverEnd1 />} />
-          <Route path="/rec1stopwatch/:t1" element={<Rec1Stopwatch />} />
-          <Route path="/rec2stopwatch" element={<Rec2Stopwatch />} />
-          <Route path="/rec1_5" element={<Rec1_5 />} />
-          <Route path="/yourorders" element={<YourOrders />} />
-          <Route path="/ratings" element={<Ratings />} />
-=======
        
         <Route element={<PrivateRoute/>}>
         <Route path="/dashboard" element={<Dashboard />} />
@@ -88,7 +58,6 @@ export default function App() {
         <Route path="/rec2stopwatch" element={<Rec2Stopwatch/>} />
         <Route path="/rec1_5" element={<Rec1_5/>} />
         <Route path="/yourorders" element={<YourOrders/>} />
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         </Route>
         <Route path="/setpassword" element={<SetPassword />} />
         <Route

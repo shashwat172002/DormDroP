@@ -7,15 +7,9 @@ import cycle from "./cycle.jpg";
 const Receiver = () => {
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
-<<<<<<< HEAD
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  var t1;
-=======
    const [loading, setLoading] = useState(false);
    const navigate=useNavigate();
    var t1;
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -60,13 +54,8 @@ const Receiver = () => {
       }
 
       setLoading(false);
-<<<<<<< HEAD
-      if (res.ok) {
-        t1 = formData.waitTime;
-=======
       if(res.ok) {
         t1=formData.waitTime;
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         navigate(`/receiverend1/${t1}`);
         //send this to sender's post lists
       }
@@ -77,20 +66,9 @@ const Receiver = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div
-      className="min-h-screen flex justify-center items-center bg-gray-100"
-      style={{ backgroundImage: `url(${cycle})`, backgroundSize: "cover" }}
-    >
-      <div className="max-w-md my-8 bg-white bg-opacity-80  shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-semibold mb-4 text-center">
-          Enter Your Details
-        </h1>
-=======
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="max-w-md my-8 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  shadow-lg rounded-lg p-6">
         <h1 className="text-3xl font-semibold mb-4 text-center">Enter Your Details</h1>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-lg font-medium">
@@ -139,11 +117,7 @@ const Receiver = () => {
               type="text"
               id="mobileNumber"
               onChange={handleChange}
-<<<<<<< HEAD
-              className="w-full px-4 py-2   border rounded-md focus:outline-none focus:border-blue-500"
-=======
               className="w-full px-4 py-2  border rounded-md focus:outline-none focus:border-blue-500"
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               placeholder="Enter your mobile number"
             />
           </div>
@@ -155,11 +129,7 @@ const Receiver = () => {
               type="number"
               id="block"
               onChange={handleChange}
-<<<<<<< HEAD
-              className="w-full px-4 py-2   border rounded-md focus:outline-none focus:border-blue-500"
-=======
               className="w-full px-4 py-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  border rounded-md focus:outline-none focus:border-blue-500"
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               placeholder="Example 15"
             />
           </div>
@@ -171,11 +141,7 @@ const Receiver = () => {
               type="number"
               id="room"
               onChange={handleChange}
-<<<<<<< HEAD
-              className="w-full px-4 py-2   border rounded-md focus:outline-none focus:border-blue-500"
-=======
               className="w-full px-4 py-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  border rounded-md focus:outline-none focus:border-blue-500"
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               placeholder="Example 707"
             />
           </div>
@@ -187,22 +153,14 @@ const Receiver = () => {
               type="number"
               id="waitTime"
               onChange={handleChange}
-<<<<<<< HEAD
-              className="w-full px-4 py-2   border rounded-md focus:outline-none focus:border-blue-500"
-=======
               className="w-full px-4 py-2 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100  border rounded-md focus:outline-none focus:border-blue-500"
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               placeholder="Example 10 mins"
             />
           </div>
           <div>
             <button
               type="submit"
-<<<<<<< HEAD
-              className="w-full bg-gradient-to-r hover:scale-105  from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
-=======
               className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
             >
               {loading ? (
                 <>

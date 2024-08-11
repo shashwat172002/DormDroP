@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Alert, Spinner } from "flowbite-react";
 import { FiX } from "react-icons/fi"; // Import the X icon from react-icons
-<<<<<<< HEAD
-import SP from "./block.jpg";
- 
-=======
-
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 export default function Dashboard() {
   const { currentDashboard } = useSelector((state) => state.DASHBOARD);
   const { currentUser } = useSelector((state) => state.user);
@@ -16,50 +10,10 @@ export default function Dashboard() {
   const { receivers } = currentDashboard;
   const [loading, setLoading] = useState(true);
   const [selectedReceiver, setSelectedReceiver] = useState(null);
-<<<<<<< HEAD
-  const [rating, setRating] = useState(0);
- 
-  useEffect(() => {
-    const fetchRating = async () => {
-      try {
-        const res = await fetch(`/api/rating/storeRating/${currentUser.username}`);
-        const data = await res.json();
-        console.log(data);
- 
-        if (res.ok) {
-          setRating(data.rate);
-        } else {
-          console.log("Error retrieving rating");
-        }
-      } catch (error) {
-        console.log("Error fetchingsd rating:", error);
-      }
-    };
- 
-    fetchRating();
-  }, []);
- 
-=======
-
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000); // Set the loading time to 2 seconds (2000 milliseconds)
-<<<<<<< HEAD
- 
-    return () => clearTimeout(timer);
-  }, []);
- 
-  const handleReceiverClick = (receiver) => {
-    setSelectedReceiver(receiver);
-  };
- 
-  const handleClosePopup = () => {
-    setSelectedReceiver(null);
-  };
- 
-=======
 
     return () => clearTimeout(timer);
   }, []);
@@ -72,7 +26,6 @@ export default function Dashboard() {
     setSelectedReceiver(null);
   };
 
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -83,31 +36,16 @@ export default function Dashboard() {
         setSelectedReceiver(null);
       }
     };
-<<<<<<< HEAD
- 
-    document.addEventListener("click", handleClickOutside);
- 
-=======
 
     document.addEventListener("click", handleClickOutside);
 
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [selectedReceiver]);
-<<<<<<< HEAD
- 
-  return (
-    <div
-      className="min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${SP})` }}
-    >
-=======
 
   return (
     <>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
       {loading ? (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-200 opacity-75 z-50">
           <Spinner size="lg" />
@@ -115,30 +53,6 @@ export default function Dashboard() {
       ) : (
         <div className="container mx-auto p-4">
           {currentDashboard === 0 ? (
-<<<<<<< HEAD
-            <div className="text-center min-h-screen ">
-              <div className="bg-white bg-opacity-40">
-                <h1 className="text-3xl font-bold mb-4 ">
-                  You haven't delivered any orders yet!
-                </h1>
-                <p className="text-gray-600">Keep up the good work!</p>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <p className="text-xl sm:text-3xl font-bold text-center mb-5">
-                Total Numbers of orders you delivered:{" "}
-                <span className="rounded-md p-1 text-yellow-900 sm:">
-                  {receivers.length}
-                </span>
-              </p>
-              <p className="text-xl sm:text-3xl font-bold text-center mb-5">
-                Your rating is:{" "}
-                <span className="rounded-md p-1 text-yellow-900 sm:">
-                  {rating === 0 ? "Not yet rated" : rating}
-                </span>
-              </p>
-=======
             <div className="text-center">
               <h1 className="text-3xl font-bold mb-4">
                 You haven't delivered any orders yet!
@@ -148,16 +62,11 @@ export default function Dashboard() {
           ) : (
             <>
               <p className="text:xl sm:text-3xl font-bold text-center mb-5">Total Numbers of orders you delivered: <span className="rounded-md p-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white sm:">{receivers.length}</span></p>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {receivers.map((receiver, index) => (
                   <div
                     key={index}
-<<<<<<< HEAD
-                    className="relative bg-white bg-opacity-40 text-black text-xl rounded-lg shadow-md p-4 transition-transform transform hover:scale-105 hover:z-10 cursor-pointer receiver-card"
-=======
                     className="relative bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 text-black text-xl rounded-lg shadow-md p-4 transition-transform transform hover:scale-105 hover:z-10 cursor-pointer receiver-card"
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                     onClick={() => handleReceiverClick(receiver)}
                   >
                     <div className="absolute inset-0 bg-gray-200 bg-opacity-30 backdrop-blur-lg rounded-lg"></div>
@@ -166,13 +75,9 @@ export default function Dashboard() {
                         <span className=""></span> {receiver.name}
                       </li>
                       <li>
-<<<<<<< HEAD
-                        <span className=""></span> {receiver.registrationNumber}
-=======
                         <span className="">
                         </span>{" "}
                         {receiver.registrationNumber}
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                       </li>
                       <li>
                         <span className="">Block:</span>
@@ -187,16 +92,10 @@ export default function Dashboard() {
               {/* Pop-up for selected receiver */}
               {selectedReceiver && (
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-75 z-50">
-<<<<<<< HEAD
-                  <div className="relative size-80 flex flex-col items-center justify-center bg-white bg-opacity-80 text-black text-xl rounded-3xl shadow-md p-4 ">
-                    <div className="absolute inset-0 bg-gray-200 bg-opacity-30 backdrop-blur-lg rounded-lg"></div>
-                    <div
-=======
                   <div className="relative size-80 flex flex-col items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-900 to-pink-500 text-white text-xl rounded-3xl shadow-md p-4 ">
                    
                     <div className="absolute inset-0 bg-gray-200 bg-opacity-30 backdrop-blur-lg rounded-lg"></div>
                      <div
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                       className="absolute top-4 right-4 cursor-pointer"
                       onClick={handleClosePopup}
                     >
@@ -207,12 +106,8 @@ export default function Dashboard() {
                         <span className=""></span> {selectedReceiver.name}
                       </li>
                       <li>
-<<<<<<< HEAD
-                        <span className=""></span>{" "}
-=======
                         <span className="">
                         </span>{" "}
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
                         {selectedReceiver.registrationNumber}
                       </li>
                       <li>
@@ -225,11 +120,7 @@ export default function Dashboard() {
                   </div>
                 </div>
               )}
-<<<<<<< HEAD
-            </div>
-=======
             </>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
           )}
         </div>
       )}

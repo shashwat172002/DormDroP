@@ -47,10 +47,9 @@ export default function SignIn() {
     }
   };
   return (
-<<<<<<< HEAD
     <div
       style={{
-        backgroundImage: `url(${SP})`,
+        backgroundImage: `u rl(${SP})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
@@ -61,49 +60,6 @@ export default function SignIn() {
             <Link
               to="/"
               className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold"
-=======
-    <div className='min-h-screen mt-20'>
-      <div className='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5'>
-        {/* left */}
-        <div className='flex-1'>
-          <Link to='/' className='font-bold dark:text-white text-4xl'>
-            <span className='px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white'>
-              Dorm
-            </span>
-            Drop
-          </Link>
-          <p className='text-sm mt-5'>
-             You can sign in with your registration number and password.
-            
-          </p>
-        </div>
-        {/* right */}
-
-        <div className='flex-1'>
-          <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-            <div>
-              <Label value='Your Registration number' />
-              <TextInput
-                type='username'
-                placeholder='Enter your 9 digits regitration number'
-                id='username'
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <Label value='Your password' />
-              <TextInput
-                type='password'
-                placeholder='************'
-                id='password'
-                onChange={handleChange}
-              />
-            </div>
-            <Button
-              gradientDuoTone='purpleToPink'
-              type='submit'
-              disabled={loading}
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
             >
               <div className="text-center mr-5 mb-5">
                 <span className="px-2 py-1 mr- span-color rounded-lg bg-gray-300 text-gray-800 font-semibold">

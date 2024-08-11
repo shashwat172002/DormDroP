@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import { io } from "socket.io-client";
-import AnimatedHourglass from "../components/AnimatedHourglass";
-import SP from "./block.jpg";
-=======
 import io from "socket.io-client";
 import AnimatedHourglass from "../components/AnimatedHourglass";
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
 
 const Rec2Stopwatch = () => {
   const { currentRecSideSender } = useSelector((state) => state.RECSIDESENDER);
@@ -17,29 +11,24 @@ const Rec2Stopwatch = () => {
 
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-  const c = 0.2;
-  const [countdown, setCountdown] = useState(c);
-=======
   const c = 10;
   const [countdown, setCountdown] = useState(c);
 
 
 
-  const socket = io.connect("http://localhost:3001");
-  socket.on("connect", () => {
-    console.log("Connected to server");
-  });
+  // const socket = io.connect("http://localhost:3001");
+  // socket.on("connect", () => {
+  //   console.log("Connected to server");
+  // });
 
-  socket.on("sendMessageToClient2", (data) => {
-    console.log("Received message from server:", data);
-    if(data==="yes")
-    navigate('/successfullyreceived');
-  });
-  socket.on("disconnect", () => {
-    console.log("Disconnected from server");
-  });
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
+  // socket.on("sendMessageToClient2", (data) => {
+  //   console.log("Received message from server:", data);
+  //   if(data==="yes")
+  //   navigate('/successfullyreceived');
+  // });
+  // socket.on("disconnect", () => {
+  //   console.log("Disconnected from server");
+  // });
 
   const socket = io.connect("http://localhost:3000");
 
@@ -124,33 +113,6 @@ const Rec2Stopwatch = () => {
   const seconds = countdown % 60;
 
   return (
-<<<<<<< HEAD
-    <div
-      className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${SP})` }}
-    >
-      <div className="flex flex-col items-center justify-center px-4 py-6 sm:px-6 lg:px-8 w-full max-w-6xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
-          {/* Left side */}
-          <div className="w-full my-4 sm:pt-12 bg-white opacity-80 shadow-md rounded-lg overflow-hidden">
-            <h1 className="text-xl font-bold text-center mb-4">
-              Your Order will reach within or at this time
-            </h1>
-            <div className="flex items-center justify-center text-6xl sm:text-8xl font-bold">
-              <div>
-                {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-              </div>
-              <AnimatedHourglass />
-            </div>
-          </div>
-
-          {/* Right side */}
-          <div className="w-full my-4 bg-white opacity-80 shadow-md rounded-lg overflow-hidden">
-            <div className="p-4 flex flex-col h-full">
-              <h2 className="text-xl font-bold mb-2">
-                Delivery Person Information
-              </h2>
-=======
     <>
       <div className="flex flex-col items-center justify-center px-6 mb-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
@@ -172,7 +134,6 @@ const Rec2Stopwatch = () => {
           <div className="w-full my-4 sm:max-w-xl bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 shadow-md rounded-lg overflow-hidden">
             <div className="p-4 flex flex-col h-full">
               <h2 className="text-xl font-bold mb-2">Delivery Person Information</h2>
->>>>>>> 29df0fd7b935199a45dfb4d590d35c11e8a7cd5b
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
                 <div className="flex flex-col">
                   <p className="text-gray-700 font-semibold">Name:</p>
