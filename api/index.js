@@ -19,7 +19,7 @@ import { setupNodeErrorHandling } from 'debugsensei';
 import ratingRoutes from "./routes/rating.route.js";
 setupNodeErrorHandling();
 
-
+    // "build": "npm install && npm install --prefix client && npm run build --prefix client"
 dotenv.config();
 
 const app = express();
